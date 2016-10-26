@@ -3,11 +3,12 @@ var buy = require('../lib/order').buy
 var sell = require('../lib/order').sell
 
 test('should create a buy/bid order', t => {
-  t.plan(8)
+  t.plan(9)
 
   var bid = buy(1, 10, 0.333)
 
   t.ok(bid, 'bid order exists')
+  t.equal(bid.order_id, 1, 'order_id === 1')
   t.equal(bid.side, 'bid', 'order side === bid')
   t.equal(bid.user_id, 1, 'user_id === 1')
   t.equal(bid.amount, 10, 'amount === 10')
@@ -20,11 +21,12 @@ test('should create a buy/bid order', t => {
 })
 
 test('should create a sell/ask order', t => {
-  t.plan(8)
+  t.plan(9)
 
   var ask = sell(2, 1, 200)
 
   t.ok(ask, 'bid order exists')
+  t.equal(ask.order_id, 2, 'order_id === 2')
   t.equal(ask.side, 'ask', 'order side === ask')
   t.equal(ask.user_id, 2, 'user_id === 1')
   t.equal(ask.amount, 1, 'amount === 1')
@@ -32,7 +34,6 @@ test('should create a sell/ask order', t => {
   t.equal(ask.status, 'open', 'status === open')
   t.equal(ask.sell_currency, 'btc', 'sell currency === btc')
   t.equal(ask.buy_currency, 'pluton', 'buy currency === pluton')
-
 
   t.end()
 })
