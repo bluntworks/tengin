@@ -39,7 +39,7 @@ test('db should be empty', t => {
   t.plan(2)
 
   db.get(x => x, (err, res) => {
-    t.ok(err, 'err should be truthy')
+    t.notOk(err, 'err should be falsey')
     t.notOk(res, 'res should be falsey')
   })
 

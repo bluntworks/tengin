@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tap ./test/*.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,7 @@
     "sequential-ids": "0.0.0"
   },
   "devDependencies": {
+    "colors": "^1.1.2",
     "tape": "^4.6.2"
   }
 }

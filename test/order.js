@@ -1,13 +1,15 @@
 var test = require('tape')
 var buy = require('../lib/order').buy
 var sell = require('../lib/order').sell
+var OT = require('../lib/constants').order_types
 
 test('should create a buy/bid order', t => {
-  t.plan(10)
+  t.plan(11)
 
   var bid = buy(1, 10, 0.333)
 
   t.ok(bid, 'bid order exists')
+  t.equal(bid.type, OT.ADD_ORDER, 'type should be add_order')
   t.equal(bid.order_id, 1, 'order_id === 1')
   t.equal(bid.side, 'bid', 'order side === bid')
   t.equal(bid.user_id, 1, 'user_id === 1')
@@ -22,11 +24,12 @@ test('should create a buy/bid order', t => {
 })
 
 test('should create a sell/ask order', t => {
-  t.plan(10)
+  t.plan(11)
 
   var ask = sell(2, 1, 200)
 
   t.ok(ask, 'bid order exists')
+  t.equal(ask.type, OT.ADD_ORDER, 'type should be add_order')
   t.equal(ask.order_id, 2, 'order_id === 2')
   t.equal(ask.side, 'ask', 'order side === ask')
   t.equal(ask.user_id, 2, 'user_id === 1')
@@ -41,7 +44,7 @@ test('should create a sell/ask order', t => {
 })
 
 test('should accept parameters as object for a bid/buy order', t => {
-  t.plan(10)
+  t.plan(11)
 
   var bid = buy({
     user_id: 1,
@@ -50,6 +53,7 @@ test('should accept parameters as object for a bid/buy order', t => {
   })
 
   t.ok(bid, 'bid order exists')
+  t.equal(bid.type, OT.ADD_ORDER, 'type should be add_order')
   t.equal(bid.order_id, 3, 'order_id === 3')
   t.equal(bid.side, 'bid', 'order side === bid')
   t.equal(bid.user_id, 1, 'user_id === 1')
@@ -64,7 +68,7 @@ test('should accept parameters as object for a bid/buy order', t => {
 })
 
 test('should accept object params for a sell/ask order', t => {
-  t.plan(10)
+  t.plan(11)
 
   var ask = sell({
     user_id: 2,
@@ -73,6 +77,7 @@ test('should accept object params for a sell/ask order', t => {
   })
 
   t.ok(ask, 'bid order exists')
+  t.equal(ask.type, OT.ADD_ORDER, 'type should be add_order')
   t.equal(ask.order_id, 4, 'order_id === 4')
   t.equal(ask.side, 'ask', 'order side === ask')
   t.equal(ask.user_id, 2, 'user_id === 1')
